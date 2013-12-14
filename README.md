@@ -31,32 +31,44 @@ So if we were to serialize the object graph for a vegetable stew recipe, the tre
 
 ![Cookbook Request Tree](cookbook.png)
 
-Let's say we're making an iOS app which will display all the recipes in a cookbook. For this example, the main view is a list of recipes with an image and an abbreviated list of their ingredients. One approach to fetching the data for our app could be to fetch all of the recipes given by /cookbook/{cookbook_id}, then all of the ingredients for each, then all of the images, and so on. Something like:
+Let's say we're making an iOS app which will display all the recipes in a cookbook. For this example, the main view is a list of recipes with an image and an abbreviated list of their ingredients. To display a recipe, we'll need to serialize a recipe and all it's child objects. We don't want to keep the user waiting until we're done with all the requests we need to make, so let's show the user recipes as soon as they're ready. This means we're going to traverse that request tree in level order, making requests in parallel wherever we can. We could try an approach like:
 
-<pre>
-id cookbook = [self fetchCookbook:cookbookID];
-id recipes = [NSMutableArray array];
-for (id recipe in cookbook.recipes) {
-    id recipe = [self fetchRecipe:recipeID];
-    [recipes addObject:recipe];
-    for (id image in recipe.images) {
-        id imageFile = [self fetchImage:image];
-        [recipe.imageFiles addObject:imageFile];
-    }
-    for (id ingredient in recipe.ingredients) {
-        id ingredient = [self fetchIngredient:ingredient];
-        for (id image in ingredient.images) {
-          id imageFile = [self fetchImage:image];
-          [ingredient.imageFiles addObject:imageFile];
+```objective-c
+[self fetchCookbook:cookbookID completion:^(id cookbook) {
+    for (id recipeID in cookbook.recipeIDs) {
+        [self fetchRecipe:recipeID completion:^{id recipe) {
+            for (id ingredientID in recipe.ingredientIDs) {
+                [self fetchIngredient:ingredientID completion:^(id ingredient) {
+                    for (id imageID in ingredient.imageIDs) {
+                        [recipe addIngredient:ingredient];
+
+                        [self fetchImage:imageID completion:^(id image) {
+                            [ingredient addImage:image];
+                        }];
+                    }
+                    [recipe addIngredient:ingredient];
+                }];
+            }
+        }];
+        
+        for (id imageID in recipe.images) {
+            [self fetchImage:imageID completion:^(id image) {
+                [recipe addImage:image];
+            }];
         }
     }
-}
-return recipes;
-</pre>
+}];
+```
 
-The problem with that approach is that the user is left waiting for all of the recipes to download before we can show them even one in the list. A better user experience would be to make fully serialized recipe objects available to the user as early as possible by fetching each recipe's child objects (and their child objects) in parallel. DRBOperationTree let's us do exactly that. We can use DRBOperationTree to define the dependencies and execute each branch of the tree in parallel. As soon as all the leaves are encountered beneath a node, an object is fully serialized and ready to display. Here's how the code above could be refactored to use DRBOperationTree:
+Assuming all our fetch methods allow concurrent requests, this will achieve our goal but the code is less than ideal. We could clean up the code, but there's another problem to solve: we need to know when all the child objects are serialized. In our request tree above, we have two sets of leaf nodes: recipe images and ingredient images. In the approach above, we'd need to add code to detect when both sets of asynchronous requests are complete.
 
-<pre>
+An alternate approach would take into account that all the code above follows a pattern of:
+* map an object to one or more child objects (i.e. cookbook -> recipes, recipe -> ingredients)
+* enqueue some work for each child object
+
+DRBOperationTree takes exactly that approach. DRBOperationTree let's us define dependencies as a tree, then it performs the 'work' each node corresponds to in level order. A node is marked completed once the post-order traversal below it has completed. Here's how the code above could be refactored to use DRBOperationTree:
+
+```objective-c
 DRBOperationTree *cookbook = [DRBOperationTree tree];
 DRBOperationTree *recipe = [DRBOperationTree tree];
 DRBOperationTree *recipeImage = [DRBOperationTree tree];
@@ -76,9 +88,47 @@ ingredientImage.provider = [[IngredientImageProvider alloc] init];
 [cookbook sendObject:@"a-cookbook" completion:^{
   // all done
 }];
-</pre>
+````
 
-Anytime the recipe node finishes serializing a recipe, it passes that recipe object to it's children, the recipeImage node and the ingredient node. The recipeImage node downloads all images for the recipe while the ingredientNode downloads each ingredient. As soon as the ingredientNode has a serialized ingredient, it will pass that object along to the ingredientImage node, which will download all images for the ingredient. Each node does it's work asynchronously, so that recipes can be serialized in parallel. As soon as a recipe object and it's children are fully serialized, it's ready to send to the view for display.
+Each node in the tree sends it's output to it's children. In this example, the recipe node sends serialized recipe objects to the ingredient nodes. The ingredient.provider is responsible for mapping the incoming recipe object to outgoing ingredient objects. Then it creates NSOperations which will download and serialize each ingredient object. The provider object confirms to the DRBOperationProvider protocol, which has these two methods:
+
+```objective-c
+
+// maps input objects to output objects (ex. recipe -> ingredient ids) 
+- (void)operationTree:(DRBOperationTree *)node
+     objectsForObject:(id)object
+           completion:(void(^)(NSArray *objects))completion {
+
+    // this method is optionally asynchronous
+    // in this example, we're just mapping a recipe to it's child ingredient ids
+    completion(recipe.ingredientIDs);
+}
+
+// given an object, returns an operation for that object and passes along the result
+// (ex. ingredient id -> operation to fetch ingredient -> serialized ingredient object)
+- (NSOperation *)operationTree:(DRBOperationTree *)node
+            operationForObject:(id)object
+                       success:(void(^)(id object))success
+                       failure:(void(^)())failure {
+
+    return [NSBlockOperation blockOperationWithBlock:^{
+        [self fetchIngredient:object completion:success];
+    }];
+}
+```
+
+Using this approach, we've solved the problem of knowing when the full serialization is complete (i.e. when the post-order traversal of the tree is complete) and we've refactored the code into independent, specialized objects that correspond to each step in our request tree.
+
+# Maintainer
+
+* [Dustin Barker @dstnbrkr](http://twitter.com/dstnbrkr)
+
+# License
+
+DRBOperation is available under the MIT license. See the LICENSE file for more info.
+
+
+
 
 
 
