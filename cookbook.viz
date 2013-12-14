@@ -2,8 +2,7 @@ digraph G {
   "cookbook" [label="/cookbook/a-cookbook", shape=box];
 
   "vegetable-stew" [label="/recipes/vegetable-stew", shape=box];
-  "vegetable-stew-1.png" [label="/images/vegetable-stew-1.png", shape=box];
-  "vegetable-stew-2.png" [label="/images/vegetable-stew-2.png", shape=box];
+  "vegetable-stew.png" [label="/images/vegetable-stew.png", shape=box];
 
   "onion" [label="/ingredients/onion", shape=box];
   "onion.png" [label="/images/onion.png", shape=box];
@@ -19,8 +18,7 @@ digraph G {
 
   "cookbook" -> "vegetable-stew"
 
-  "vegetable-stew" -> "vegetable-stew-1.png"
-  "vegetable-stew" -> "vegetable-stew-2.png"
+  "vegetable-stew" -> "vegetable-stew.png"
 
   "vegetable-stew" -> "onion"
   "vegetable-stew" -> "garlic"
