@@ -117,7 +117,11 @@ Each node in the tree sends it's output to it's children. In this example, the r
 }
 ```
 
-Using this approach, we've solved the problem of knowing when the full serialization is complete (i.e. when the post-order traversal of the tree is complete) and we've refactored the code into independent, specialized objects that correspond to each step in our request tree.
+Using this approach with DRBOperationTree, we've:
+* solved our initial problem of serializing the graph in parallel to make the best user experience
+* found a way to detect when the full serialization is complete (i.e. when the post-order traversal of the tree is complete)
+* refactored the outer code into a structure that corresponds to our request tree
+* refactored the inner code into specialized objects that correspond to each step in our serialization
 
 # Maintainer
 
