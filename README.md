@@ -25,9 +25,9 @@ Let's say we have an API with the following endpoints:
   </tr>
 </table>
 
-In order to serialize the object graph for a cookbook, we'd need to fetch the list of recipe ids from the `/cookbook/{cookbook_id}` endpoint, then fetch each recipe and it's image, followed by each ingredient and it's image. At each step, we need to look at the response of a previous request to know what the next requests will be. For example, to know which (and how many) `/ingredients/{ingredient_id}` requests we'll make, we have to first fetch and parse `/recipes/{recipe_id}/ingredient`. We can think of these dependencies as a tree.
+In order to serialize the object graph for a cookbook, we'd need to fetch the list of recipe ids from the `/cookbook/{cookbook_id}` endpoint, then fetch each recipe, followed by each image and each ingredient for each recipe. What we request at each step depends on the response of the request in the previous step. For example, to know which (and how many) `/ingredients/{ingredient_id}` requests we'll make, we have to first fetch and parse `/recipes/{recipe_id}/ingredient`. We can model these dependencies as a tree.
 
-So if we were to serialize the object graph for a vegetable stew recipe, the tree of requests we'd make would be something like this:
+For example, if were to serialize the object graph for a vegetable stew recipe, the tree of requests we'd make would be something like this:
 
 ![Cookbook Request Tree](cookbook.png)
 
