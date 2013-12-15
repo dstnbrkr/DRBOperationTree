@@ -15,6 +15,8 @@
 		B30DA612185BF9A300D02C80 /* DRBOperationTree.m in Sources */ = {isa = PBXBuildFile; fileRef = B30DA5F5185BF83A00D02C80 /* DRBOperationTree.m */; };
 		B3B72C11185BF3B4005406E9 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B3B72C10185BF3B4005406E9 /* XCTest.framework */; };
 		B3B72C13185BF3B4005406E9 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B3B72C12185BF3B4005406E9 /* Foundation.framework */; };
+		B3C3E807185BFB7000C1FC7E /* XCTestCase+SRTAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = B30DA5FD185BF87200D02C80 /* XCTestCase+SRTAdditions.m */; };
+		B3C3E809185C0A0100C1FC7E /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B3C3E808185C0A0100C1FC7E /* Foundation.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -29,6 +31,7 @@
 		B3B72C10185BF3B4005406E9 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 		B3B72C12185BF3B4005406E9 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
 		B3B72C18185BF3B4005406E9 /* Tests-iOS-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "Tests-iOS-Info.plist"; path = "Tests-iOS/Tests-iOS-Info.plist"; sourceTree = "<group>"; };
+		B3C3E808185C0A0100C1FC7E /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -36,6 +39,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B3C3E809185C0A0100C1FC7E /* Foundation.framework in Frameworks */,
 				B30DA604185BF98E00D02C80 /* XCTest.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -103,6 +107,7 @@
 		B3B72C0F185BF3B4005406E9 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				B3C3E808185C0A0100C1FC7E /* Foundation.framework */,
 				B3B72C10185BF3B4005406E9 /* XCTest.framework */,
 				B3B72C12185BF3B4005406E9 /* Foundation.framework */,
 			);
@@ -194,6 +199,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B3C3E807185BFB7000C1FC7E /* XCTestCase+SRTAdditions.m in Sources */,
 				B30DA612185BF9A300D02C80 /* DRBOperationTree.m in Sources */,
 				B30DA611185BF9A000D02C80 /* DRBOperationTreeTests.m in Sources */,
 			);
@@ -252,6 +258,7 @@
 				INFOPLIST_FILE = "Tests-OSX/Tests-OSX-Info.plist";
 				MACOSX_DEPLOYMENT_TARGET = 10.8;
 				ONLY_ACTIVE_ARCH = YES;
+				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
 				WRAPPER_EXTENSION = xctest;
@@ -292,6 +299,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				INFOPLIST_FILE = "Tests-OSX/Tests-OSX-Info.plist";
 				MACOSX_DEPLOYMENT_TARGET = 10.8;
+				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
 				WRAPPER_EXTENSION = xctest;
