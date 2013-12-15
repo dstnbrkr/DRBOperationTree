@@ -1,9 +1,26 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model name="Test1.xcdatamodel" userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="1" systemVersion="11A491" minimumToolsVersion="Automatic" macOSVersion="Automatic" iOSVersion="Automatic">
+<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="3396" systemVersion="12F45" minimumToolsVersion="Automatic" macOSVersion="Automatic" iOSVersion="Automatic">
+    <entity name="DRBCookbook" syncable="YES">
+        <relationship name="recipes" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="DRBRecipe" inverseName="cookbook" inverseEntity="DRBRecipe" syncable="YES"/>
+    </entity>
+    <entity name="DRBIngredient" syncable="YES">
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+    </entity>
+    <entity name="DRBRecipe" syncable="YES">
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="cookbook" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="DRBCookbook" inverseName="recipes" inverseEntity="DRBCookbook" syncable="YES"/>
+        <relationship name="ingredients" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="DRBIngredient" syncable="YES"/>
+    </entity>
     <entity name="Event">
-        <attribute name="timeStamp" optional="YES" attributeType="Date"/>
+        <attribute name="timeStamp" optional="YES" attributeType="Date">
+            <userInfo/>
+        </attribute>
+        <userInfo/>
     </entity>
     <elements>
-        <element name="Event" positionX="261" positionY="189" width="128" height="60"/>
+        <element name="Event" positionX="0" positionY="0" width="0" height="0"/>
+        <element name="DRBRecipe" positionX="0" positionY="0" width="0" height="0"/>
+        <element name="DRBIngredient" positionX="0" positionY="0" width="0" height="0"/>
+        <element name="DRBCookbook" positionX="0" positionY="0" width="0" height="0"/>
     </elements>
 </model>

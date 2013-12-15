@@ -27,6 +27,7 @@
 		B3C3E896185E253600C1FC7E /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = B3C3E894185E253600C1FC7E /* InfoPlist.strings */; };
 		B3C3E898185E253600C1FC7E /* ExampleTests.m in Sources */ = {isa = PBXBuildFile; fileRef = B3C3E897185E253600C1FC7E /* ExampleTests.m */; };
 		B3C3E8A3185E281100C1FC7E /* DRBRecipeProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = B3C3E8A2185E281100C1FC7E /* DRBRecipeProvider.m */; };
+		B3C3E8A6185E2C1700C1FC7E /* DRBCookbookProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = B3C3E8A5185E2C1700C1FC7E /* DRBCookbookProvider.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -67,6 +68,8 @@
 		B3C3E897185E253600C1FC7E /* ExampleTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ExampleTests.m; sourceTree = "<group>"; };
 		B3C3E8A1185E281100C1FC7E /* DRBRecipeProvider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DRBRecipeProvider.h; sourceTree = "<group>"; };
 		B3C3E8A2185E281100C1FC7E /* DRBRecipeProvider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DRBRecipeProvider.m; sourceTree = "<group>"; };
+		B3C3E8A4185E2C1700C1FC7E /* DRBCookbookProvider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DRBCookbookProvider.h; sourceTree = "<group>"; };
+		B3C3E8A5185E2C1700C1FC7E /* DRBCookbookProvider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DRBCookbookProvider.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -139,6 +142,8 @@
 				B3C3E87E185E253600C1FC7E /* DRBMasterViewController.m */,
 				B3C3E880185E253600C1FC7E /* DRBDetailViewController.h */,
 				B3C3E881185E253600C1FC7E /* DRBDetailViewController.m */,
+				B3C3E8A4185E2C1700C1FC7E /* DRBCookbookProvider.h */,
+				B3C3E8A5185E2C1700C1FC7E /* DRBCookbookProvider.m */,
 				B3C3E8A1185E281100C1FC7E /* DRBRecipeProvider.h */,
 				B3C3E8A2185E281100C1FC7E /* DRBRecipeProvider.m */,
 				B3C3E883185E253600C1FC7E /* Images.xcassets */,
@@ -313,6 +318,7 @@
 				B3C3E872185E253600C1FC7E /* main.m in Sources */,
 				B3C3E882185E253600C1FC7E /* DRBDetailViewController.m in Sources */,
 				B3C3E87C185E253600C1FC7E /* Example.xcdatamodeld in Sources */,
+				B3C3E8A6185E2C1700C1FC7E /* DRBCookbookProvider.m in Sources */,
 				B3C3E8A3185E281100C1FC7E /* DRBRecipeProvider.m in Sources */,
 				B3C3E876185E253600C1FC7E /* DRBAppDelegate.m in Sources */,
 				B3C3E87F185E253600C1FC7E /* DRBMasterViewController.m in Sources */,

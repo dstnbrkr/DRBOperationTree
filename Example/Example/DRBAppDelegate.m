@@ -9,6 +9,7 @@
 #import "DRBAppDelegate.h"
 #import "DRBMasterViewController.h"
 #import "DRBOperationTree.h"
+#import "DRBCookbookProvider.h"
 #import "DRBRecipeProvider.h"
 
 @implementation DRBAppDelegate
@@ -27,14 +28,15 @@
     NSOperationQueue *requestQueue = [[NSOperationQueue alloc] init];
     [requestQueue setMaxConcurrentOperationCount:5];
     
-    DRBOperationTree *root = [[DRBOperationTree alloc] initWithOperationQueue:requestQueue];
+    DRBOperationTree *cookbook = [[DRBOperationTree alloc] initWithOperationQueue:requestQueue];
     DRBOperationTree *recipes = [[DRBOperationTree alloc] initWithOperationQueue:requestQueue];
     
+    cookbook.provider = [[DRBCookbookProvider alloc] init];
     recipes.provider = [[DRBRecipeProvider alloc] init];
     
-    [root addChild:recipes];
+    [cookbook addChild:recipes];
     
-    [root sendObject:@"a-cookbook" completion:^{
+    [cookbook sendObject:@"a-cookbook" completion:^{
         NSLog(@"Done!");
     }];
     
