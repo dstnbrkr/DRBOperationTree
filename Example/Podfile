@@ -1,0 +1,9 @@
+platform :ios, "7.0"
+
+pod 'AFNetworking', "~> 1.0"
+pod 'VCRURLConnection', '~> 0.1.1'
+pod 'DRBOperationTree', :git => 'https://github.com/dstnbrkr/DRBOperationTree.git'
+
+
+
+
