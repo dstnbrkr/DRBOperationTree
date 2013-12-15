@@ -7,8 +7,9 @@
 //
 
 #import "DRBAppDelegate.h"
-
 #import "DRBMasterViewController.h"
+#import "DRBOperationTree.h"
+#import "DRBRecipeProvider.h"
 
 @implementation DRBAppDelegate
 
@@ -18,10 +19,25 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    // Override point for customization after application launch.
+
     UINavigationController *navigationController = (UINavigationController *)self.window.rootViewController;
     DRBMasterViewController *controller = (DRBMasterViewController *)navigationController.topViewController;
     controller.managedObjectContext = self.managedObjectContext;
+    
+    NSOperationQueue *requestQueue = [[NSOperationQueue alloc] init];
+    [requestQueue setMaxConcurrentOperationCount:5];
+    
+    DRBOperationTree *root = [[DRBOperationTree alloc] initWithOperationQueue:requestQueue];
+    DRBOperationTree *recipes = [[DRBOperationTree alloc] initWithOperationQueue:requestQueue];
+    
+    recipes.provider = [[DRBRecipeProvider alloc] init];
+    
+    [root addChild:recipes];
+    
+    [root sendObject:@"a-cookbook" completion:^{
+        NSLog(@"Done!");
+    }];
+    
     return YES;
 }
 							
