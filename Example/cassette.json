@@ -15,7 +15,7 @@
     "headers" : {
       "Content-Type" : "application/json"
     },
-    "body" : "{ \"name\" : \"Vegetable Stew\", \"ingredient_ids\" : [ \"onion\", \"garlic\", \"carrot\", \"bayleaf\" ], \"image_path\" : \"vegetable-stew.png\" }"
+    "body" : "{ \"name\" : \"Vegetable Stew\", \"ingredient_ids\" : [ \"onion\", \"garlic\", \"carrot\", \"bayleaf\" ], \"image_path\" : \"http://farm2.staticflickr.com/1239/5117662053_49bd207706_s.jpg\" }"
   },
   {
     "method" : "GET",
@@ -24,7 +24,7 @@
     "headers" : {
       "Content-Type" : "application/json"
     },
-    "body" : "{ \"name\" : \"Cauliflower and Sweet Potatoes\", \"ingredient_ids\" : [ \"onion\", \"ginger\", \"cumin\", \"sweet-potato\", \"cauliflower\" ], \"image_path\" : \"cauliflower-sp.png\" }"
+    "body" : "{ \"name\" : \"Cauliflower and Sweet Potatoes\", \"ingredient_ids\" : [ \"onion\", \"ginger\", \"cumin\", \"sweet-potato\", \"cauliflower\" ], \"image_path\" : \"http://farm9.staticflickr.com/8476/8434681717_3849faaa02_s.jpg\" }"
   },
   {
     "method" : "GET",
@@ -33,7 +33,7 @@
     "headers" : {
       "Content-Type" : "application/json"
     },
-    "body" : "{ \"name\" : \"Fried Chicken\", \"ingredient_ids\" : [ \"chicken\", \"flour\", \"buttermilk\", \"pepper\" ], \"image_path\" : \"http://farm4.staticflickr.com/3191/2875255560_ae0051f91e.jpg\" }"
+    "body" : "{ \"name\" : \"Fried Chicken\", \"ingredient_ids\" : [ \"chicken\", \"flour\", \"buttermilk\", \"pepper\" ], \"image_path\" : \"http://farm4.staticflickr.com/3191/2875255560_ae0051f91e_s.jpg\" }"
   }
 ]
 
