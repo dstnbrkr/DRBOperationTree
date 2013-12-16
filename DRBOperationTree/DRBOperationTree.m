@@ -58,6 +58,8 @@ static const NSUInteger kARSyncNodeMaxRetries = 3;
             dispatch_group_leave(group);
         }];
     }
+    
+    // the completion block will be called after all child nodes have called their completion block
     dispatch_group_notify(group, dispatch_get_main_queue(), completion);
 }
 
@@ -69,16 +71,22 @@ static const NSUInteger kARSyncNodeMaxRetries = 3;
                                              continuation:^(id result, void(^completion)()) {
                                                  dispatch_async(dispatch_get_main_queue(), ^{
                                                      [self sendObject:result completion:^{
+                                                         
+                                                         // call the completion block associated with this node
                                                          if (completion) completion();
+                                                         
                                                          dispatch_group_leave(group);
                                                      }];
                                                  });
                                              }
                                                   failure:^{
                                                       [_retries addObject:object];
+                                                      
+                                                      // retry failed operations
                                                       if ([_retries countForObject:object] < kARSyncNodeMaxRetries) {
                                                           [self enqueueOperationForObject:object dispatchGroup:group];
                                                       }
+                                                      
                                                       dispatch_group_leave(group);
                                                   }];
     [self.operationQueue addOperation:operation];
