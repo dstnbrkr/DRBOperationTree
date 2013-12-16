@@ -1,0 +1,40 @@
+[ 
+  {
+    "method" : "GET",
+    "uri" : "http://api.example.com/cookbooks/a-cookbook",
+    "status" : 200,
+    "headers" : {
+      "Content-Type" : "application/json"
+    },
+    "body" : "{ \"recipe_ids\" : [ \"vegetable-stew\", \"cauliflower-and-sweet-potatoes\", \"fried-chicken\" ] }"
+  },
+  {
+    "method" : "GET",
+    "uri" : "http://api.example.com/recipes/vegetable-stew",
+    "status" : 200,
+    "headers" : {
+      "Content-Type" : "application/json"
+    },
+    "body" : "{ \"name\" : \"Vegetable Stew\", \"ingredient_ids\" : [ \"onion\", \"garlic\", \"carrot\", \"bayleaf\" ], \"image_path\" : \"vegetable-stew.png\" }"
+  },
+  {
+    "method" : "GET",
+    "uri" : "http://api.example.com/recipes/cauliflower-and-sweet-potatoes",
+    "status" : 200,
+    "headers" : {
+      "Content-Type" : "application/json"
+    },
+    "body" : "{ \"name\" : \"Cauliflower and Sweet Potatoes\", \"ingredient_ids\" : [ \"onion\", \"ginger\", \"cumin\", \"sweet-potato\", \"cauliflower\" ], \"image_path\" : \"cauliflower-sp.png\" }"
+  },
+  {
+    "method" : "GET",
+    "uri" : "http://api.example.com/recipes/fried-chicken",
+    "status" : 200,
+    "headers" : {
+      "Content-Type" : "application/json"
+    },
+    "body" : "{ \"name\" : \"Fried Chicken\", \"ingredient_ids\" : [ \"chicken\", \"flour\", \"buttermilk\", \"pepper\" ], \"image_path\" : \"http://farm4.staticflickr.com/3191/2875255560_ae0051f91e.jpg\" }"
+  }
+]
+
+

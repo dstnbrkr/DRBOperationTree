@@ -11,4 +11,6 @@
 
 @interface DRBCookbookProvider : NSObject<DRBOperationProvider>
 
+- (id)initWithManagedObjectContext:(NSManagedObjectContext *)context;
+
 @end

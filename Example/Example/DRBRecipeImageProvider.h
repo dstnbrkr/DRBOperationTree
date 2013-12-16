@@ -1,5 +1,5 @@
 //
-//  DRBRecipeProvider.h
+//  DRBRecipeImageProvider.h
 //  Example
 //
 //  Created by Dustin Barker on 12/15/13.
@@ -9,8 +9,6 @@
 #import "DRBOperationTree.h"
 #import <Foundation/Foundation.h>
 
-@interface DRBRecipeProvider : NSObject<DRBOperationProvider>
-
-- (id)initWithManagedObjectContext:(NSManagedObjectContext *)context;
+@interface DRBRecipeImageProvider : NSObject<DRBOperationProvider>
 
 @end

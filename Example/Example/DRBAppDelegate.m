@@ -11,6 +11,8 @@
 #import "DRBOperationTree.h"
 #import "DRBCookbookProvider.h"
 #import "DRBRecipeProvider.h"
+#import "DRBRecipeImageProvider.h"
+#import "VCR.h"
 
 @implementation DRBAppDelegate
 
@@ -25,19 +27,27 @@
     DRBMasterViewController *controller = (DRBMasterViewController *)navigationController.topViewController;
     controller.managedObjectContext = self.managedObjectContext;
     
+    NSString *cassettePath = [[NSBundle mainBundle] pathForResource:@"cassette" ofType:@"json"];
+    NSURL *cassetteURL = [NSURL fileURLWithPath:cassettePath];
+    [VCR loadCassetteWithContentsOfURL:cassetteURL];
+    [VCR start];
+    
     NSOperationQueue *requestQueue = [[NSOperationQueue alloc] init];
     [requestQueue setMaxConcurrentOperationCount:5];
     
     DRBOperationTree *cookbook = [[DRBOperationTree alloc] initWithOperationQueue:requestQueue];
     DRBOperationTree *recipes = [[DRBOperationTree alloc] initWithOperationQueue:requestQueue];
+    DRBOperationTree *recipeImages = [[DRBOperationTree alloc] initWithOperationQueue:requestQueue];
     
-    cookbook.provider = [[DRBCookbookProvider alloc] init];
-    recipes.provider = [[DRBRecipeProvider alloc] init];
+    cookbook.provider = [[DRBCookbookProvider alloc] initWithManagedObjectContext:self.managedObjectContext];
+    recipes.provider = [[DRBRecipeProvider alloc] initWithManagedObjectContext:self.managedObjectContext];
+    recipeImages.provider = [[DRBRecipeImageProvider alloc] init];
     
     [cookbook addChild:recipes];
+    [recipes addChild:recipeImages];
     
-    [cookbook sendObject:@"a-cookbook" completion:^{
-        NSLog(@"Done!");
+    [cookbook enqueueOperationsForObject:@"a-cookbook" completion:^{
+        NSLog(@"Done");
     }];
     
     return YES;

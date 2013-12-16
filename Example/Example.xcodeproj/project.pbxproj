@@ -28,6 +28,11 @@
 		B3C3E898185E253600C1FC7E /* ExampleTests.m in Sources */ = {isa = PBXBuildFile; fileRef = B3C3E897185E253600C1FC7E /* ExampleTests.m */; };
 		B3C3E8A3185E281100C1FC7E /* DRBRecipeProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = B3C3E8A2185E281100C1FC7E /* DRBRecipeProvider.m */; };
 		B3C3E8A6185E2C1700C1FC7E /* DRBCookbookProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = B3C3E8A5185E2C1700C1FC7E /* DRBCookbookProvider.m */; };
+		B3C3E8A9185E30AE00C1FC7E /* DRBCookbook.m in Sources */ = {isa = PBXBuildFile; fileRef = B3C3E8A8185E30AE00C1FC7E /* DRBCookbook.m */; };
+		B3C3E8AC185E30AF00C1FC7E /* DRBRecipe.m in Sources */ = {isa = PBXBuildFile; fileRef = B3C3E8AB185E30AF00C1FC7E /* DRBRecipe.m */; };
+		B3C3E8AF185E30AF00C1FC7E /* DRBIngredient.m in Sources */ = {isa = PBXBuildFile; fileRef = B3C3E8AE185E30AF00C1FC7E /* DRBIngredient.m */; };
+		B3C3E8B3185E425300C1FC7E /* cassette.json in Resources */ = {isa = PBXBuildFile; fileRef = B3C3E8B2185E425300C1FC7E /* cassette.json */; };
+		B3C3E8B6185E91D100C1FC7E /* DRBRecipeImageProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = B3C3E8B5185E91D100C1FC7E /* DRBRecipeImageProvider.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -70,6 +75,15 @@
 		B3C3E8A2185E281100C1FC7E /* DRBRecipeProvider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DRBRecipeProvider.m; sourceTree = "<group>"; };
 		B3C3E8A4185E2C1700C1FC7E /* DRBCookbookProvider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DRBCookbookProvider.h; sourceTree = "<group>"; };
 		B3C3E8A5185E2C1700C1FC7E /* DRBCookbookProvider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DRBCookbookProvider.m; sourceTree = "<group>"; };
+		B3C3E8A7185E30AE00C1FC7E /* DRBCookbook.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DRBCookbook.h; sourceTree = "<group>"; };
+		B3C3E8A8185E30AE00C1FC7E /* DRBCookbook.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DRBCookbook.m; sourceTree = "<group>"; };
+		B3C3E8AA185E30AF00C1FC7E /* DRBRecipe.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DRBRecipe.h; sourceTree = "<group>"; };
+		B3C3E8AB185E30AF00C1FC7E /* DRBRecipe.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DRBRecipe.m; sourceTree = "<group>"; };
+		B3C3E8AD185E30AF00C1FC7E /* DRBIngredient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DRBIngredient.h; sourceTree = "<group>"; };
+		B3C3E8AE185E30AF00C1FC7E /* DRBIngredient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DRBIngredient.m; sourceTree = "<group>"; };
+		B3C3E8B2185E425300C1FC7E /* cassette.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = cassette.json; sourceTree = SOURCE_ROOT; };
+		B3C3E8B4185E91D100C1FC7E /* DRBRecipeImageProvider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DRBRecipeImageProvider.h; sourceTree = "<group>"; };
+		B3C3E8B5185E91D100C1FC7E /* DRBRecipeImageProvider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DRBRecipeImageProvider.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -142,10 +156,8 @@
 				B3C3E87E185E253600C1FC7E /* DRBMasterViewController.m */,
 				B3C3E880185E253600C1FC7E /* DRBDetailViewController.h */,
 				B3C3E881185E253600C1FC7E /* DRBDetailViewController.m */,
-				B3C3E8A4185E2C1700C1FC7E /* DRBCookbookProvider.h */,
-				B3C3E8A5185E2C1700C1FC7E /* DRBCookbookProvider.m */,
-				B3C3E8A1185E281100C1FC7E /* DRBRecipeProvider.h */,
-				B3C3E8A2185E281100C1FC7E /* DRBRecipeProvider.m */,
+				B3C3E8B1185E30C500C1FC7E /* Models */,
+				B3C3E8B0185E30B300C1FC7E /* Operation Providers */,
 				B3C3E883185E253600C1FC7E /* Images.xcassets */,
 				B3C3E87A185E253600C1FC7E /* Example.xcdatamodeld */,
 				B3C3E86C185E253600C1FC7E /* Supporting Files */,
@@ -156,6 +168,7 @@
 		B3C3E86C185E253600C1FC7E /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				B3C3E8B2185E425300C1FC7E /* cassette.json */,
 				B3C3E86D185E253600C1FC7E /* Example-Info.plist */,
 				B3C3E86E185E253600C1FC7E /* InfoPlist.strings */,
 				B3C3E871185E253600C1FC7E /* main.m */,
@@ -180,6 +193,32 @@
 				B3C3E894185E253600C1FC7E /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		B3C3E8B0185E30B300C1FC7E /* Operation Providers */ = {
+			isa = PBXGroup;
+			children = (
+				B3C3E8A4185E2C1700C1FC7E /* DRBCookbookProvider.h */,
+				B3C3E8A5185E2C1700C1FC7E /* DRBCookbookProvider.m */,
+				B3C3E8A1185E281100C1FC7E /* DRBRecipeProvider.h */,
+				B3C3E8A2185E281100C1FC7E /* DRBRecipeProvider.m */,
+				B3C3E8B4185E91D100C1FC7E /* DRBRecipeImageProvider.h */,
+				B3C3E8B5185E91D100C1FC7E /* DRBRecipeImageProvider.m */,
+			);
+			name = "Operation Providers";
+			sourceTree = "<group>";
+		};
+		B3C3E8B1185E30C500C1FC7E /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				B3C3E8A7185E30AE00C1FC7E /* DRBCookbook.h */,
+				B3C3E8A8185E30AE00C1FC7E /* DRBCookbook.m */,
+				B3C3E8AA185E30AF00C1FC7E /* DRBRecipe.h */,
+				B3C3E8AB185E30AF00C1FC7E /* DRBRecipe.m */,
+				B3C3E8AD185E30AF00C1FC7E /* DRBIngredient.h */,
+				B3C3E8AE185E30AF00C1FC7E /* DRBIngredient.m */,
+			);
+			name = Models;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -262,6 +301,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B3C3E884185E253600C1FC7E /* Images.xcassets in Resources */,
+				B3C3E8B3185E425300C1FC7E /* cassette.json in Resources */,
 				B3C3E870185E253600C1FC7E /* InfoPlist.strings in Resources */,
 				B3C3E879185E253600C1FC7E /* Main.storyboard in Resources */,
 			);
@@ -319,9 +359,13 @@
 				B3C3E882185E253600C1FC7E /* DRBDetailViewController.m in Sources */,
 				B3C3E87C185E253600C1FC7E /* Example.xcdatamodeld in Sources */,
 				B3C3E8A6185E2C1700C1FC7E /* DRBCookbookProvider.m in Sources */,
+				B3C3E8B6185E91D100C1FC7E /* DRBRecipeImageProvider.m in Sources */,
+				B3C3E8AC185E30AF00C1FC7E /* DRBRecipe.m in Sources */,
 				B3C3E8A3185E281100C1FC7E /* DRBRecipeProvider.m in Sources */,
 				B3C3E876185E253600C1FC7E /* DRBAppDelegate.m in Sources */,
+				B3C3E8AF185E30AF00C1FC7E /* DRBIngredient.m in Sources */,
 				B3C3E87F185E253600C1FC7E /* DRBMasterViewController.m in Sources */,
+				B3C3E8A9185E30AE00C1FC7E /* DRBCookbook.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
