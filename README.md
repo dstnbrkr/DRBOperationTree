@@ -73,7 +73,7 @@ An alternate approach would take into account that all the code above follows a 
 * map an object to one or more child objects (i.e. cookbook -> recipes, recipe -> ingredients)
 * enqueue some work for each child object
 
-DRBOperationTree takes exactly that approach. DRBOperationTree let's us define dependencies as a tree, then it performs the 'work' each node corresponds to in level order. A node is marked completed once the post-order traversal below it has completed. Here's how the code above could be refactored to use DRBOperationTree:
+DRBOperationTree takes exactly that approach. DRBOperationTree lets us define dependencies as a tree, then it performs the 'work' each node corresponds to in level order. A node is marked completed once the post-order traversal below it has completed. Here's how the code above could be refactored to use DRBOperationTree:
 
 ```objective-c
 DRBOperationTree *cookbook = [DRBOperationTree tree];
