@@ -8,7 +8,7 @@
 
 #import "DRBRecipeProvider.h"
 #import "DRBCookbook.h"
-#import "DRBRecipe.h"
+#import "DRBRecipe+Example.h"
 #import "AFJSONRequestOperation.h"
 
 @interface DRBRecipeProvider () {
@@ -47,7 +47,6 @@
         DRBRecipe *recipe = [DRBRecipe recipeWithJSON:responseObject context:context];
                              
         continuation(recipe, ^{
-            NSLog(@"Recipe Done %@, image=%@", recipe.name, recipe.image);
             [context performBlock:^{
                 [context save:nil];
             }];

@@ -41,9 +41,7 @@
     AFJSONRequestOperation *operation = [[AFJSONRequestOperation alloc] initWithRequest:request];
     [operation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
         DRBCookbook *cookbook = [DRBCookbook cookbookWithJSON:responseObject context:_managedObjectContext];
-        continuation(cookbook, ^{
-            NSLog(@"Cookbook done");
-        });
+        continuation(cookbook, nil);
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         failure();
     }];

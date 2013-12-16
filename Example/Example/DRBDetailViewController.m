@@ -7,6 +7,7 @@
 //
 
 #import "DRBDetailViewController.h"
+#import "DRBIngredient.h"
 
 @interface DRBDetailViewController ()
 @property (nonatomic, strong) NSArray *ingredients;
@@ -28,8 +29,12 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell" forIndexPath:indexPath];
-    cell.textLabel.text = [self.ingredients objectAtIndex:indexPath.row];
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell"];
+    if (!cell) {
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"Cell"];
+    }
+    DRBIngredient *ingredient = [self.ingredients objectAtIndex:indexPath.row];
+    cell.textLabel.text = ingredient.name;
     return cell;
 }
 

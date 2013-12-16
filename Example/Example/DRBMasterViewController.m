@@ -8,18 +8,13 @@
 
 #import "DRBMasterViewController.h"
 #import "DRBDetailViewController.h"
-#import "DRBRecipe.h"
+#import "DRBRecipe+Example.h"
 
 @interface DRBMasterViewController ()
 - (void)configureCell:(UITableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath;
 @end
 
 @implementation DRBMasterViewController
-
-- (void)awakeFromNib
-{
-    [super awakeFromNib];
-}
 
 - (void)viewDidLoad
 {
@@ -72,7 +67,10 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell" forIndexPath:indexPath];
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell"];
+    if (!cell) {
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"Cell"];
+    }
     [self configureCell:cell atIndexPath:indexPath];
     return cell;
 }
@@ -103,6 +101,14 @@
 {
     // The table view should not be re-orderable.
     return NO;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    DRBRecipe *recipe = [[self fetchedResultsController] objectAtIndexPath:indexPath];
+    DRBDetailViewController *controller = [[DRBDetailViewController alloc] init];
+    controller.recipe = recipe;
+    [self.navigationController pushViewController:controller animated:YES];
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender

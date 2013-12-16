@@ -5,22 +5,15 @@
     </entity>
     <entity name="DRBIngredient" representedClassName="DRBIngredient" syncable="YES">
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
-        <relationship name="recipes" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="DRBRecipe" inverseName="ingredients" inverseEntity="DRBRecipe" syncable="YES"/>
+        <relationship name="recipes" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="DRBRecipe" inverseName="ingredients" inverseEntity="DRBRecipe" syncable="YES"/>
     </entity>
     <entity name="DRBRecipe" representedClassName="DRBRecipe" syncable="YES">
         <attribute name="imagePath" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="cookbook" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="DRBCookbook" inverseName="recipes" inverseEntity="DRBCookbook" syncable="YES"/>
-        <relationship name="ingredients" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="DRBIngredient" inverseName="recipes" inverseEntity="DRBIngredient" syncable="YES"/>
-    </entity>
-    <entity name="Event">
-        <attribute name="timeStamp" optional="YES" attributeType="Date">
-            <userInfo/>
-        </attribute>
-        <userInfo/>
+        <relationship name="ingredients" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="DRBIngredient" inverseName="recipes" inverseEntity="DRBIngredient" syncable="YES"/>
     </entity>
     <elements>
-        <element name="Event" positionX="0" positionY="0" width="0" height="0"/>
         <element name="DRBRecipe" positionX="0" positionY="0" width="0" height="0"/>
         <element name="DRBIngredient" positionX="0" positionY="0" width="0" height="0"/>
         <element name="DRBCookbook" positionX="0" positionY="0" width="0" height="0"/>

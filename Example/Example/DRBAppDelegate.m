@@ -23,10 +23,13 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-
-    UINavigationController *navigationController = (UINavigationController *)self.window.rootViewController;
-    DRBMasterViewController *controller = (DRBMasterViewController *)navigationController.topViewController;
+    DRBMasterViewController *controller = [[DRBMasterViewController alloc] initWithStyle:UITableViewStylePlain];
     controller.managedObjectContext = self.managedObjectContext;
+    UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:controller];
+    
+    self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+    self.window.rootViewController = navigationController;
+    [self.window makeKeyAndVisible];
     
     NSString *cassettePath = [[NSBundle mainBundle] pathForResource:@"cassette" ofType:@"json"];
     NSURL *cassetteURL = [NSURL fileURLWithPath:cassettePath];

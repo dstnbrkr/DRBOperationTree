@@ -34,7 +34,17 @@
       "Content-Type" : "application/json"
     },
     "body" : "{ \"name\" : \"Fried Chicken\", \"ingredient_ids\" : [ \"chicken\", \"flour\", \"buttermilk\", \"pepper\" ], \"image_path\" : \"http://farm4.staticflickr.com/3191/2875255560_ae0051f91e_s.jpg\" }"
-  }
+  },
+  {
+    "method" : "GET",
+    "uri" : "http://api.example.com/ingredients/onion",
+    "status" : 200,
+    "headers" : {
+      "Content-Type" : "application/json"
+    },
+    "body" : "{ \"name\" : \"Onion\", \"image_path\" : \"http://farm3.staticflickr.com/2263/1842820851_98e9a56047_s.jpg\" }"
+  },
+ 
 ]
 
 

@@ -7,7 +7,7 @@
 //
 
 #import "DRBRecipeImageProvider.h"
-#import "DRBRecipe.h"
+#import "DRBRecipe+Example.h"
 #import "AFImageRequestOperation.h"
 
 @implementation DRBRecipeImageProvider
@@ -30,9 +30,7 @@
                                                 imageProcessingBlock:nil
                                                              success:^(NSURLRequest *request, NSHTTPURLResponse *response, UIImage *image) {
                                                                  [UIImagePNGRepresentation(image) writeToFile:filePath atomically:YES];
-                                                                 continuation(image, ^{
-                                                                     NSLog(@"Recipe Image Done %@", image);
-                                                                 });
+                                                                 continuation(image, nil);
                                                              } failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error) {
                                                                  failure();
                                                              }];

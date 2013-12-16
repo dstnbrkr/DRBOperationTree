@@ -1,31 +1,33 @@
 //
 //  DRBRecipe.h
-//  Example
+//  Pods
 //
-//  Created by Dustin Barker on 12/15/13.
-//  Copyright (c) 2013 dstnbrkr. All rights reserved.
+//  Created by Dustin Barker on 12/16/13.
+//
 //
 
 #import <Foundation/Foundation.h>
 #import <CoreData/CoreData.h>
 
-@class DRBCookbook;
+@class DRBCookbook, DRBIngredient;
 
 @interface DRBRecipe : NSManagedObject
 
-+ (DRBRecipe *)recipeWithJSON:(id)JSON context:(NSManagedObjectContext *)context;
-
-// core data
-@property (nonatomic, strong) NSString *name;
-@property (nonatomic, strong) NSSet *ingredients;
+@property (nonatomic, strong) NSString * name;
+@property (nonatomic, strong) NSString * imagePath;
 @property (nonatomic, strong) DRBCookbook *cookbook;
-@property (nonatomic, strong) NSString *imagePath;
-
-// derived
-@property (nonatomic, readonly) NSString *imageFilePath;
-@property (nonatomic, readonly) UIImage *image;
+@property (nonatomic, strong) NSSet *ingredients;
 
 // transient
 @property (nonatomic, strong) NSArray *ingredientIDs;
+
+@end
+
+@interface DRBRecipe (CoreDataGeneratedAccessors)
+
+- (void)addIngredientsObject:(DRBIngredient *)value;
+- (void)removeIngredientsObject:(DRBIngredient *)value;
+- (void)addIngredients:(NSSet *)values;
+- (void)removeIngredients:(NSSet *)values;
 
 @end
