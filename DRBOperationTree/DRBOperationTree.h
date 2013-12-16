@@ -26,10 +26,25 @@
 
 @class DRBOperationTree;
 
+/**
+ `DRBOperationProvider` is the interface `DRBOperationTree` interacts with to determine what work needs to be performed in a node.
+ 
+ An object that implements `DRBOperationProvider` is responsible for:
+ - mapping an input object to one or more output objects
+ - mapping each output object to an NSOperation
+ */
 @protocol DRBOperationProvider <NSObject>
 
+/**
+ Maps an input object to one or more output objects.
+ */
 - (void)operationTree:(DRBOperationTree *)node objectsForObject:(id)object completion:(void(^)(NSArray *objects))completion;
 
+/**
+ Maps an output object to an operation.
+ 
+ The operation is responsible for calling `continuation`, which will allow tree proccessing to continue.
+ */
 - (NSOperation *)operationTree:(DRBOperationTree *)node
             operationForObject:(id)object
                   continuation:(void(^)(id object, void(^completion)()))continuation
@@ -37,11 +52,41 @@
 
 @end
 
+/**
+ `DRBOperationTree` is an iOS and OSX API to organize NSOperations into a tree.
+ 
+ Each node's output becomes the input for its child nodes.
+ */
 @interface DRBOperationTree : NSObject
+
+/**
+ Initializes a `DRBOperationTree` with a specific NSOperationQueue
+ */
 - (id)initWithOperationQueue:(NSOperationQueue *)operationQueue;
+
+/**
+ Passes an objet to it's child nodes. Completion is called when the level order traversal of all child nodes is complete.
+ */
 - (void)sendObject:(id)object completion:(void(^)())completion;
+
+/**
+ Adds a child node to the node.
+ */
 - (void)addChild:(DRBOperationTree *)node;
+
+/**
+ Maps an input object to output objects and enqueue the corresponding NSOperations for each.
+ */
 - (void)enqueueOperationsForObject:(id)object completion:(void(^)())completion;
+
+/**
+ The `DRBOperationProvider` responsible for mapping input objects to output objects and object to operations.
+ */
 @property (nonatomic, strong) id<DRBOperationProvider> provider;
+
+/**
+ The NSOperationQueue associated with this node
+ */
 @property (nonatomic, strong, readonly) NSOperationQueue *operationQueue;
+
 @end
