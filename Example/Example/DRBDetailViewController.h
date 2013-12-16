@@ -6,11 +6,12 @@
 //  Copyright (c) 2013 dstnbrkr. All rights reserved.
 //
 
+#import "DRBRecipe.h"
 #import <UIKit/UIKit.h>
 
-@interface DRBDetailViewController : UIViewController
+@interface DRBDetailViewController : UITableViewController
 
-@property (strong, nonatomic) id detailItem;
+@property (strong, nonatomic) DRBRecipe *recipe;
 
 @property (weak, nonatomic) IBOutlet UILabel *detailDescriptionLabel;
 @end

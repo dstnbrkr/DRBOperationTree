@@ -17,7 +17,7 @@
 
 // core data
 @property (nonatomic, strong) NSString *name;
-@property (nonatomic, strong) NSManagedObject *ingredients;
+@property (nonatomic, strong) NSSet *ingredients;
 @property (nonatomic, strong) DRBCookbook *cookbook;
 @property (nonatomic, strong) NSString *imagePath;
 

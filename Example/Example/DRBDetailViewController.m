@@ -9,43 +9,28 @@
 #import "DRBDetailViewController.h"
 
 @interface DRBDetailViewController ()
-- (void)configureView;
+@property (nonatomic, strong) NSArray *ingredients;
 @end
 
 @implementation DRBDetailViewController
 
-#pragma mark - Managing the detail item
-
-- (void)setDetailItem:(id)newDetailItem
+- (void)setRecipe:(DRBRecipe *)recipe
 {
-    if (_detailItem != newDetailItem) {
-        _detailItem = newDetailItem;
-        
-        // Update the view.
-        [self configureView];
-    }
+    self.ingredients = [[recipe.ingredients allObjects] sortedArrayUsingSelector:@selector(name)];
 }
 
-- (void)configureView
-{
-    // Update the user interface for the detail item.
+#pragma mark - Table View
 
-    if (self.detailItem) {
-        self.detailDescriptionLabel.text = [[self.detailItem valueForKey:@"timeStamp"] description];
-    }
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    return [self.ingredients count];
 }
 
-- (void)viewDidLoad
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    [super viewDidLoad];
-	// Do any additional setup after loading the view, typically from a nib.
-    [self configureView];
-}
-
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell" forIndexPath:indexPath];
+    cell.textLabel.text = [self.ingredients objectAtIndex:indexPath.row];
+    return cell;
 }
 
 @end

@@ -33,6 +33,7 @@
 		B3C3E8AF185E30AF00C1FC7E /* DRBIngredient.m in Sources */ = {isa = PBXBuildFile; fileRef = B3C3E8AE185E30AF00C1FC7E /* DRBIngredient.m */; };
 		B3C3E8B3185E425300C1FC7E /* cassette.json in Resources */ = {isa = PBXBuildFile; fileRef = B3C3E8B2185E425300C1FC7E /* cassette.json */; };
 		B3C3E8B6185E91D100C1FC7E /* DRBRecipeImageProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = B3C3E8B5185E91D100C1FC7E /* DRBRecipeImageProvider.m */; };
+		B3C3E8B9185EBDB500C1FC7E /* DRBIngredientProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = B3C3E8B8185EBDB500C1FC7E /* DRBIngredientProvider.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -84,6 +85,8 @@
 		B3C3E8B2185E425300C1FC7E /* cassette.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = cassette.json; sourceTree = SOURCE_ROOT; };
 		B3C3E8B4185E91D100C1FC7E /* DRBRecipeImageProvider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DRBRecipeImageProvider.h; sourceTree = "<group>"; };
 		B3C3E8B5185E91D100C1FC7E /* DRBRecipeImageProvider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DRBRecipeImageProvider.m; sourceTree = "<group>"; };
+		B3C3E8B7185EBDB500C1FC7E /* DRBIngredientProvider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DRBIngredientProvider.h; sourceTree = "<group>"; };
+		B3C3E8B8185EBDB500C1FC7E /* DRBIngredientProvider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DRBIngredientProvider.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -204,6 +207,8 @@
 				B3C3E8A2185E281100C1FC7E /* DRBRecipeProvider.m */,
 				B3C3E8B4185E91D100C1FC7E /* DRBRecipeImageProvider.h */,
 				B3C3E8B5185E91D100C1FC7E /* DRBRecipeImageProvider.m */,
+				B3C3E8B7185EBDB500C1FC7E /* DRBIngredientProvider.h */,
+				B3C3E8B8185EBDB500C1FC7E /* DRBIngredientProvider.m */,
 			);
 			name = "Operation Providers";
 			sourceTree = "<group>";
@@ -361,6 +366,7 @@
 				B3C3E8A6185E2C1700C1FC7E /* DRBCookbookProvider.m in Sources */,
 				B3C3E8B6185E91D100C1FC7E /* DRBRecipeImageProvider.m in Sources */,
 				B3C3E8AC185E30AF00C1FC7E /* DRBRecipe.m in Sources */,
+				B3C3E8B9185EBDB500C1FC7E /* DRBIngredientProvider.m in Sources */,
 				B3C3E8A3185E281100C1FC7E /* DRBRecipeProvider.m in Sources */,
 				B3C3E876185E253600C1FC7E /* DRBAppDelegate.m in Sources */,
 				B3C3E8AF185E30AF00C1FC7E /* DRBIngredient.m in Sources */,

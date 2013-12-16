@@ -12,6 +12,7 @@
 #import "DRBCookbookProvider.h"
 #import "DRBRecipeProvider.h"
 #import "DRBRecipeImageProvider.h"
+#import "DRBIngredientProvider.h"
 #import "VCR.h"
 
 @implementation DRBAppDelegate
@@ -38,13 +39,16 @@
     DRBOperationTree *cookbook = [[DRBOperationTree alloc] initWithOperationQueue:requestQueue];
     DRBOperationTree *recipes = [[DRBOperationTree alloc] initWithOperationQueue:requestQueue];
     DRBOperationTree *recipeImages = [[DRBOperationTree alloc] initWithOperationQueue:requestQueue];
+    DRBOperationTree *ingredients = [[DRBOperationTree alloc] initWithOperationQueue:requestQueue];
     
     cookbook.provider = [[DRBCookbookProvider alloc] initWithManagedObjectContext:self.managedObjectContext];
     recipes.provider = [[DRBRecipeProvider alloc] initWithManagedObjectContext:self.managedObjectContext];
     recipeImages.provider = [[DRBRecipeImageProvider alloc] init];
+    ingredients.provider = [[DRBIngredientProvider alloc] initWithManagedObjectContext:self.managedObjectContext];
     
     [cookbook addChild:recipes];
     [recipes addChild:recipeImages];
+    [recipes addChild:ingredients];
     
     [cookbook enqueueOperationsForObject:@"a-cookbook" completion:^{
         NSLog(@"Done");

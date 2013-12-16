@@ -109,8 +109,8 @@
 {
     if ([[segue identifier] isEqualToString:@"showDetail"]) {
         NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
-        NSManagedObject *object = [[self fetchedResultsController] objectAtIndexPath:indexPath];
-        [[segue destinationViewController] setDetailItem:object];
+        DRBRecipe *recipe = [[self fetchedResultsController] objectAtIndexPath:indexPath];
+        [[segue destinationViewController] setRecipe:recipe];
     }
 }
 
@@ -217,7 +217,6 @@
 {
     DRBRecipe *recipe = [self.fetchedResultsController objectAtIndexPath:indexPath];
     cell.textLabel.text = recipe.name;
-    NSLog(@"cell %@, image=%@", recipe.name, recipe.image);
     cell.imageView.image = recipe.image;
 }
 

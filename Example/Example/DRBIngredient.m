@@ -13,4 +13,12 @@
 
 @dynamic name;
 
++ (DRBIngredient *)ingredientWithJSON:(id)JSON context:(NSManagedObjectContext *)context
+{
+    NSEntityDescription *entity = [NSEntityDescription entityForName:@"DRBIngredient" inManagedObjectContext:context];
+    DRBIngredient *ingredient = [[DRBIngredient alloc] initWithEntity:entity insertIntoManagedObjectContext:context];
+    ingredient.name = [JSON objectForKey:@"name"];
+    return ingredient;
+}
+
 @end

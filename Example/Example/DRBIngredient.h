@@ -12,6 +12,8 @@
 
 @interface DRBIngredient : NSManagedObject
 
++ (DRBIngredient *)ingredientWithJSON:(id)JSON context:(NSManagedObjectContext *)context;
+
 @property (nonatomic, retain) NSString * name;
 
 @end
