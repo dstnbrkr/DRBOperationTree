@@ -65,7 +65,7 @@
 - (id)initWithOperationQueue:(NSOperationQueue *)operationQueue;
 
 /**
- Passes an objet to it's child nodes. Completion is called when the level order traversal of all child nodes is complete.
+ Passes an object to it's child nodes. Completion is called when the level order traversal of all child nodes is complete.
  */
 - (void)sendObject:(id)object completion:(void(^)())completion;
 
