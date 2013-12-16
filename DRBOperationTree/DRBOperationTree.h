@@ -65,6 +65,11 @@
 + (DRBOperationTree *)tree;
 
 /**
+ The NSOperationQueue that DRBOperationTree instances will use by default.
+ */
++ (NSOperationQueue *)defaultOperationQueue;
+
+/**
  Initializes a `DRBOperationTree` with a specific NSOperationQueue
  */
 - (id)initWithOperationQueue:(NSOperationQueue *)operationQueue;

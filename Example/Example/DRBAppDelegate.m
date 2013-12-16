@@ -37,14 +37,13 @@
     [VCR loadCassetteWithContentsOfURL:cassetteURL];
     [VCR start];
     
-    NSOperationQueue *requestQueue = [[NSOperationQueue alloc] init];
-    [requestQueue setMaxConcurrentOperationCount:5];
+    [[DRBOperationTree defaultOperationQueue] setMaxConcurrentOperationCount:5];
     
     DRBOperationTree *cookbook = [DRBOperationTree tree];
-    DRBOperationTree *recipes = [[DRBOperationTree alloc] initWithOperationQueue:requestQueue];
-    DRBOperationTree *recipeImages = [[DRBOperationTree alloc] initWithOperationQueue:requestQueue];
-    DRBOperationTree *ingredients = [[DRBOperationTree alloc] initWithOperationQueue:requestQueue];
-    DRBOperationTree *ingredientImages = [[DRBOperationTree alloc] initWithOperationQueue:requestQueue];
+    DRBOperationTree *recipes = [DRBOperationTree tree];
+    DRBOperationTree *recipeImages = [DRBOperationTree tree];
+    DRBOperationTree *ingredients = [DRBOperationTree tree];
+    DRBOperationTree *ingredientImages = [DRBOperationTree tree];
     
     cookbook.provider = [[DRBCookbookProvider alloc] initWithManagedObjectContext:self.managedObjectContext];
     recipes.provider = [[DRBRecipeProvider alloc] initWithManagedObjectContext:self.managedObjectContext];
