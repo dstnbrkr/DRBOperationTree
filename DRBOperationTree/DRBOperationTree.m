@@ -34,6 +34,22 @@ static const NSUInteger kARSyncNodeMaxRetries = 3;
 
 @implementation DRBOperationTree
 
++ (NSOperationQueue *)defaultOperationQueue
+{
+    static NSOperationQueue *operationQueue;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        operationQueue = [[NSOperationQueue alloc] init];
+    });
+    return operationQueue;
+}
+
++ (DRBOperationTree *)tree
+{
+    NSOperationQueue *operationQueue = [self defaultOperationQueue];
+    return [[DRBOperationTree alloc] initWithOperationQueue:operationQueue];
+}
+
 - (id)initWithOperationQueue:(NSOperationQueue *)operationQueue
 {
     if ((self = [super init])) {

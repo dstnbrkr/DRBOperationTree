@@ -60,6 +60,11 @@
 @interface DRBOperationTree : NSObject
 
 /**
+ Convenience constructor to return a `DRBOperationTree` initialized with the default NSOperationQueue.
+ */
++ (DRBOperationTree *)tree;
+
+/**
  Initializes a `DRBOperationTree` with a specific NSOperationQueue
  */
 - (id)initWithOperationQueue:(NSOperationQueue *)operationQueue;

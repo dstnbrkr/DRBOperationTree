@@ -40,7 +40,7 @@
     NSOperationQueue *requestQueue = [[NSOperationQueue alloc] init];
     [requestQueue setMaxConcurrentOperationCount:5];
     
-    DRBOperationTree *cookbook = [[DRBOperationTree alloc] initWithOperationQueue:requestQueue];
+    DRBOperationTree *cookbook = [DRBOperationTree tree];
     DRBOperationTree *recipes = [[DRBOperationTree alloc] initWithOperationQueue:requestQueue];
     DRBOperationTree *recipeImages = [[DRBOperationTree alloc] initWithOperationQueue:requestQueue];
     DRBOperationTree *ingredients = [[DRBOperationTree alloc] initWithOperationQueue:requestQueue];
