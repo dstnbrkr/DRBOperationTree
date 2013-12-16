@@ -50,7 +50,11 @@
     [recipes addChild:recipeImages];
     
     [cookbook enqueueOperationsForObject:@"a-cookbook" completion:^{
-        NSLog(@"Done");
+        [backgroundContext performBlock:^{
+            NSError *error = nil;
+            [backgroundContext save:&error];
+            if (error) NSLog(@"Error saving background context: %@", error.localizedDescription);
+        }];
     }];
     
     return YES;

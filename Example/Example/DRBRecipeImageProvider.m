@@ -26,10 +26,14 @@
     NSURL *URL = image[0];
     DRBRecipe *recipe = image[1];
     NSURLRequest *request = [NSURLRequest requestWithURL:URL];
-    return [AFImageRequestOperation imageRequestOperationWithRequest:request success:^(UIImage *image) {
-        recipe.image = image;
-        success(image);
-    }];
+    return [AFImageRequestOperation imageRequestOperationWithRequest:request
+                                                imageProcessingBlock:nil
+                                                             success:^(NSURLRequest *request, NSHTTPURLResponse *response, UIImage *image) {
+                                                                 recipe.image = image;
+                                                                 success(image);
+                                                             } failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error) {
+                                                                 failure();
+                                                             }];
 }
 
 @end
