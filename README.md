@@ -3,6 +3,13 @@
 # DRBOperationTree
 DRBOperationTree is an iOS and OSX API to organize work (NSOperations) into a tree such that the output of each parent is passed to it's children for further processing.
 
+# Quick Start
+If you want to get right into the details, take a look at the Example project. In particular:
+* [DRBOperationTree configuration](https://github.com/dstnbrkr/DRBOperationTree/blob/0.0.1/Example/Example/DRBAppDelegate.m#L57-L78)
+* [DRBOperationProvider implementation](https://github.com/dstnbrkr/DRBOperationTree/blob/0.0.1/Example/Example/DRBRecipeProvider.m)
+
+More in-depth explanation of these topics and the motivation below.
+
 # Example
 Let's say we have an API with the following endpoints:
 
@@ -31,7 +38,7 @@ If were to serialize the object graph for a vegetable stew recipe, the tree of r
 
 ![Cookbook Request Tree](cookbook.png)
 
-Let's say we're making an iOS app which will display all the recipes in a cookbook. For this example, the main view is a list of recipes with an image and an abbreviated list of their ingredients. To display a recipe, we'll need to serialize a recipe and all it's child objects. We don't want to keep the user waiting until we're done with all the requests we need to make, so let's show the user recipes as soon as they're ready. This means we're going to traverse that request tree in level order, making requests in parallel wherever we can. We could try an approach like:
+Now let's use this API to make an iOS app which will display all the recipes in a cookbook. For this example, the main view is a list of recipes with an image and an abbreviated list of their ingredients. To display a recipe, we'll need to serialize a recipe and all it's child objects. We don't want to keep the user waiting until we're done with all the requests we need to make, so let's show the user recipes as soon as they're ready. This means we're going to traverse that request tree in level order, making requests in parallel wherever we can. We could try an approach like:
 
 ```objective-c
 [self fetchCookbook:cookbookID completion:^(id cookbook) {
