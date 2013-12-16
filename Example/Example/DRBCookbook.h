@@ -6,10 +6,6 @@
 //  Copyright (c) 2013 dstnbrkr. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
-#import <CoreData/CoreData.h>
-
-
 @interface DRBCookbook : NSManagedObject
 
 + (DRBCookbook *)cookbookWithJSON:(id)JSON context:(NSManagedObjectContext *)context;

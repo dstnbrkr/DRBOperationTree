@@ -8,10 +8,10 @@
 
 #import "DRBIngredient.h"
 
-
 @implementation DRBIngredient
 
 @dynamic name;
+@dynamic imagePath;
 
 + (DRBIngredient *)ingredientWithJSON:(id)JSON context:(NSManagedObjectContext *)context
 {

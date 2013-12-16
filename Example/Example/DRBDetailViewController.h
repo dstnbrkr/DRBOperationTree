@@ -7,7 +7,6 @@
 //
 
 #import "DRBRecipe.h"
-#import <UIKit/UIKit.h>
 
 @interface DRBDetailViewController : UITableViewController
 

@@ -8,14 +8,14 @@
 
 #import "DRBCookbook.h"
 
-
 @implementation DRBCookbook
 
 @synthesize recipeIDs;
 
 @dynamic recipes;
 
-+ (DRBCookbook *)cookbookWithJSON:(id)JSON context:(NSManagedObjectContext *)context {
++ (DRBCookbook *)cookbookWithJSON:(id)JSON context:(NSManagedObjectContext *)context
+{
     NSEntityDescription *entity = [NSEntityDescription entityForName:@"DRBCookbook" inManagedObjectContext:context];
     DRBCookbook *cookbook = [[DRBCookbook alloc] initWithEntity:entity insertIntoManagedObjectContext:context];
     cookbook.recipeIDs = [JSON objectForKey:@"recipe_ids"];

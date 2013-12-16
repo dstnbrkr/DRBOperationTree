@@ -8,7 +8,7 @@
 
 #import "DRBRecipeProvider.h"
 #import "DRBCookbook.h"
-#import "DRBRecipe+Example.h"
+#import "DRBRecipe.h"
 #import "AFJSONRequestOperation.h"
 
 @interface DRBRecipeProvider () {

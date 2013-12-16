@@ -7,7 +7,7 @@
 //
 
 #import "DRBRecipeImageProvider.h"
-#import "DRBRecipe+Example.h"
+#import "DRBRecipe.h"
 #import "AFImageRequestOperation.h"
 
 @implementation DRBRecipeImageProvider

@@ -6,12 +6,13 @@
 //
 //
 
-#import <Foundation/Foundation.h>
-#import <CoreData/CoreData.h>
-
 @class DRBCookbook, DRBIngredient;
 
 @interface DRBRecipe : NSManagedObject
+
++ (DRBRecipe *)recipeWithJSON:(id)JSON context:(NSManagedObjectContext *)context;
+- (NSString *)imageFilePath;
+- (UIImage *)image;
 
 @property (nonatomic, strong) NSString * name;
 @property (nonatomic, strong) NSString * imagePath;

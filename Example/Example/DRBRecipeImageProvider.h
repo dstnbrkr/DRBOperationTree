@@ -7,7 +7,6 @@
 //
 
 #import "DRBOperationTree.h"
-#import <Foundation/Foundation.h>
 
 @interface DRBRecipeImageProvider : NSObject<DRBOperationProvider>
 
