@@ -39,8 +39,11 @@
     DRBOperationTree *recipes = [[DRBOperationTree alloc] initWithOperationQueue:requestQueue];
     DRBOperationTree *recipeImages = [[DRBOperationTree alloc] initWithOperationQueue:requestQueue];
     
-    cookbook.provider = [[DRBCookbookProvider alloc] initWithManagedObjectContext:self.managedObjectContext];
-    recipes.provider = [[DRBRecipeProvider alloc] initWithManagedObjectContext:self.managedObjectContext];
+    NSManagedObjectContext *backgroundContext = [[NSManagedObjectContext alloc] initWithConcurrencyType:NSPrivateQueueConcurrencyType];
+    backgroundContext.parentContext = self.managedObjectContext;
+    
+    cookbook.provider = [[DRBCookbookProvider alloc] initWithManagedObjectContext:backgroundContext];
+    recipes.provider = [[DRBRecipeProvider alloc] initWithManagedObjectContext:backgroundContext];
     recipeImages.provider = [[DRBRecipeImageProvider alloc] init];
     
     [cookbook addChild:recipes];
@@ -107,7 +110,7 @@
     
     NSPersistentStoreCoordinator *coordinator = [self persistentStoreCoordinator];
     if (coordinator != nil) {
-        _managedObjectContext = [[NSManagedObjectContext alloc] init];
+        _managedObjectContext = [[NSManagedObjectContext alloc] initWithConcurrencyType:NSMainQueueConcurrencyType];
         [_managedObjectContext setPersistentStoreCoordinator:coordinator];
     }
     return _managedObjectContext;
