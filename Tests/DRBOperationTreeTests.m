@@ -28,6 +28,7 @@
 
 @interface DRBOperationTestProvider : NSObject<DRBOperationProvider>
 @property (nonatomic, readonly) id object;
+@property (nonatomic, readonly) BOOL completed;
 @end
 
 @interface DRBOperationFailingProvider : NSObject<DRBOperationProvider>
@@ -53,8 +54,8 @@
 {
     NSOperationQueue *operationQueue = [[NSOperationQueue alloc] init];
     DRBOperationTree *node = [[DRBOperationTree alloc] initWithOperationQueue:operationQueue];
-    DRBOperationTestProvider *delegate = [[DRBOperationTestProvider alloc] init];
-    node.provider = delegate;
+    DRBOperationTestProvider *provider = [[DRBOperationTestProvider alloc] init];
+    node.provider = provider;
     
     id object = @"foo";
     
@@ -65,15 +66,16 @@
         return completed == YES;
     } timeout:1];
     
-    XCTAssert([delegate.object isEqual:object], @"Expected delegate to be completed");
+    XCTAssert([provider.object isEqual:object], @"Expected provider to receive object");
+    XCTAssert(provider.completed, @"Expected provider to be completed");
 }
 
 - (void)testSendObjectWithSingleNode
 {
     NSOperationQueue *operationQueue = [[NSOperationQueue alloc] init];
     DRBOperationTree *node = [[DRBOperationTree alloc] initWithOperationQueue:operationQueue];
-    DRBOperationTestProvider *delegate = [[DRBOperationTestProvider alloc] init];
-    node.provider = delegate;
+    DRBOperationTestProvider *provider = [[DRBOperationTestProvider alloc] init];
+    node.provider = provider;
     
     __block BOOL completed = NO;
     [node sendObject:nil completion:^{ completed = YES; }];
@@ -90,19 +92,19 @@
     DRBOperationTree *child1 = [[DRBOperationTree alloc] initWithOperationQueue:operationQueue];
     DRBOperationTree *child2 = [[DRBOperationTree alloc] initWithOperationQueue:operationQueue];
     
-    DRBOperationTestProvider *child1Delegate = [[DRBOperationTestProvider alloc] init];
-    DRBOperationTestProvider *child2Delegate = [[DRBOperationTestProvider alloc] init];
+    DRBOperationTestProvider *child1Provider = [[DRBOperationTestProvider alloc] init];
+    DRBOperationTestProvider *child2Provider = [[DRBOperationTestProvider alloc] init];
     
-    child1.provider = child1Delegate;
-    child2.provider = child2Delegate;
+    child1.provider = child1Provider;
+    child2.provider = child2Provider;
     
     [root addChild:child1];
     [root addChild:child2];
 
     __block BOOL completed = NO;
     [root sendObject:@"foo" completion:^{
-        XCTAssert(child1Delegate.object, @"Expected child 1 to be completed");
-        XCTAssert(child2Delegate.object, @"Expected child 2 to be completed");
+        XCTAssert(child1Provider.object, @"Expected child 1 to be completed");
+        XCTAssert(child2Provider.object, @"Expected child 2 to be completed");
         completed = YES;
     }];
     [self runCurrentRunLoopUntilTestPasses:^BOOL{
@@ -182,7 +184,7 @@
     NSOperation *operation = [NSBlockOperation blockOperationWithBlock:^{
         _object = object;
     }];
-    operation.completionBlock = ^{ continuation(object, nil); };
+    operation.completionBlock = ^{ continuation(object, ^{ _completed = YES; }); };
     return operation;
 }
 
