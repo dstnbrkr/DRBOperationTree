@@ -13,6 +13,7 @@
 #import "DRBRecipeProvider.h"
 #import "DRBRecipeImageProvider.h"
 #import "DRBIngredientProvider.h"
+#import "DRBIngredientImageProvider.h"
 #import "VCR.h"
 
 @implementation DRBAppDelegate
@@ -43,18 +44,21 @@
     DRBOperationTree *recipes = [[DRBOperationTree alloc] initWithOperationQueue:requestQueue];
     DRBOperationTree *recipeImages = [[DRBOperationTree alloc] initWithOperationQueue:requestQueue];
     DRBOperationTree *ingredients = [[DRBOperationTree alloc] initWithOperationQueue:requestQueue];
+    DRBOperationTree *ingredientImages = [[DRBOperationTree alloc] initWithOperationQueue:requestQueue];
     
     cookbook.provider = [[DRBCookbookProvider alloc] initWithManagedObjectContext:self.managedObjectContext];
     recipes.provider = [[DRBRecipeProvider alloc] initWithManagedObjectContext:self.managedObjectContext];
     recipeImages.provider = [[DRBRecipeImageProvider alloc] init];
     ingredients.provider = [[DRBIngredientProvider alloc] initWithManagedObjectContext:self.managedObjectContext];
+    ingredientImages.provider = [[DRBIngredientImageProvider alloc] init];
     
     [cookbook addChild:recipes];
     [recipes addChild:recipeImages];
     [recipes addChild:ingredients];
+    [ingredients addChild:ingredientImages];
     
     [cookbook enqueueOperationsForObject:@"a-cookbook" completion:^{
-        NSLog(@"Done");
+        NSLog(@"All entities downloaded");
     }];
     
     return YES;

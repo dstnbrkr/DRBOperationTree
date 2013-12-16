@@ -35,6 +35,7 @@
     }
     DRBIngredient *ingredient = [self.ingredients objectAtIndex:indexPath.row];
     cell.textLabel.text = ingredient.name;
+    cell.imageView.image = ingredient.image;
     return cell;
 }
 

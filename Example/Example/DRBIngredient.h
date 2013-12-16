@@ -15,5 +15,10 @@
 + (DRBIngredient *)ingredientWithJSON:(id)JSON context:(NSManagedObjectContext *)context;
 
 @property (nonatomic, retain) NSString * name;
+@property (nonatomic, retain) NSString * imagePath;
+
+// derived
+@property (nonatomic, readonly) NSString *imageFilePath;
+@property (nonatomic, readonly) UIImage *image;
 
 @end

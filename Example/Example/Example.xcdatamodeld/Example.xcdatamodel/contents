@@ -4,6 +4,7 @@
         <relationship name="recipes" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="DRBRecipe" inverseName="cookbook" inverseEntity="DRBRecipe" syncable="YES"/>
     </entity>
     <entity name="DRBIngredient" representedClassName="DRBIngredient" syncable="YES">
+        <attribute name="imagePath" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="recipes" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="DRBRecipe" inverseName="ingredients" inverseEntity="DRBRecipe" syncable="YES"/>
     </entity>
