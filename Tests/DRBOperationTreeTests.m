@@ -174,12 +174,15 @@
     completion(@[ object ]);
 }
 
-- (NSOperation *)operationTree:(DRBOperationTree *)node operationForObject:(id)object success:(void (^)(id result))success failure:(void (^)())failure
+- (NSOperation *)operationTree:(DRBOperationTree *)node
+            operationForObject:(id)object
+                  continuation:(void (^)(id, void (^)()))continuation
+                       failure:(void (^)())failure
 {
     NSOperation *operation = [NSBlockOperation blockOperationWithBlock:^{
         _object = object;
     }];
-    operation.completionBlock = ^{ success(object); };
+    operation.completionBlock = ^{ continuation(object, nil); };
     return operation;
 }
 
@@ -192,7 +195,10 @@
     completion(@[ object ]);
 }
 
-- (NSOperation *)operationTree:(DRBOperationTree *)node operationForObject:(id)object success:(void (^)(id result))success failure:(void (^)())failure
+- (NSOperation *)operationTree:(DRBOperationTree *)node
+            operationForObject:(id)object
+                       continuation:(void (^)(id, void (^)()))continuation
+                       failure:(void (^)())failure
 {
     NSOperation *operation = [NSBlockOperation blockOperationWithBlock:^{
         _retryCount++;

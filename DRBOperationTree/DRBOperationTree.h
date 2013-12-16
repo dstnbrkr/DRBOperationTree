@@ -32,7 +32,7 @@
 
 - (NSOperation *)operationTree:(DRBOperationTree *)node
             operationForObject:(id)object
-                       success:(void(^)(id object))success
+                  continuation:(void(^)(id object, void(^completion)()))continuation
                        failure:(void(^)())failure;
 
 @end

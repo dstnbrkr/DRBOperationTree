@@ -63,25 +63,25 @@ static const NSUInteger kARSyncNodeMaxRetries = 3;
 
 - (void)enqueueOperationForObject:(id)object dispatchGroup:(dispatch_group_t)group
 {
-    __weak typeof(self) weakSelf = self;
     dispatch_group_enter(group);
     NSOperation *operation = [self.provider operationTree:self
                                        operationForObject:object
-                                                  success:^(id result) {
-                                                      dispatch_async(dispatch_get_main_queue(), ^{
-                                                          [weakSelf sendObject:result completion:^{
-                                                              dispatch_group_leave(group);
-                                                          }];
-                                                      });
-                                                  }
+                                             continuation:^(id result, void(^completion)()) {
+                                                 dispatch_async(dispatch_get_main_queue(), ^{
+                                                     [self sendObject:result completion:^{
+                                                         if (completion) completion();
+                                                         dispatch_group_leave(group);
+                                                     }];
+                                                 });
+                                             }
                                                   failure:^{
                                                       [_retries addObject:object];
                                                       if ([_retries countForObject:object] < kARSyncNodeMaxRetries) {
-                                                          [weakSelf enqueueOperationForObject:object dispatchGroup:group];
+                                                          [self enqueueOperationForObject:object dispatchGroup:group];
                                                       }
                                                       dispatch_group_leave(group);
                                                   }];
-    [weakSelf.operationQueue addOperation:operation];
+    [self.operationQueue addOperation:operation];
 }
 
 - (void)enqueueOperationsForObject:(id)object completion:(void(^)())completion
