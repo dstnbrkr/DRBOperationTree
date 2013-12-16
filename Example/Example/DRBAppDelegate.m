@@ -39,22 +39,15 @@
     DRBOperationTree *recipes = [[DRBOperationTree alloc] initWithOperationQueue:requestQueue];
     DRBOperationTree *recipeImages = [[DRBOperationTree alloc] initWithOperationQueue:requestQueue];
     
-    NSManagedObjectContext *backgroundContext = [[NSManagedObjectContext alloc] initWithConcurrencyType:NSPrivateQueueConcurrencyType];
-    backgroundContext.parentContext = self.managedObjectContext;
-    
-    cookbook.provider = [[DRBCookbookProvider alloc] initWithManagedObjectContext:backgroundContext];
-    recipes.provider = [[DRBRecipeProvider alloc] initWithManagedObjectContext:backgroundContext];
+    cookbook.provider = [[DRBCookbookProvider alloc] initWithManagedObjectContext:self.managedObjectContext];
+    recipes.provider = [[DRBRecipeProvider alloc] initWithManagedObjectContext:self.managedObjectContext];
     recipeImages.provider = [[DRBRecipeImageProvider alloc] init];
     
     [cookbook addChild:recipes];
     [recipes addChild:recipeImages];
     
     [cookbook enqueueOperationsForObject:@"a-cookbook" completion:^{
-        [backgroundContext performBlock:^{
-            NSError *error = nil;
-            [backgroundContext save:&error];
-            if (error) NSLog(@"Error saving background context: %@", error.localizedDescription);
-        }];
+        NSLog(@"Done");
     }];
     
     return YES;

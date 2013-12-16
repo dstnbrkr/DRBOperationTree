@@ -15,22 +15,24 @@
 - (void)operationTree:(DRBOperationTree *)node objectsForObject:(DRBRecipe *)recipe completion:(void (^)(NSArray *))completion
 {
     NSURL *URL = [NSURL URLWithString:recipe.imagePath];
-    completion(@[ @[ URL, recipe ] ]);
+    completion(@[ @[ URL, recipe.imageFilePath ] ]);
 }
 
 - (NSOperation *)operationTree:(DRBOperationTree *)node
-            operationForObject:(NSArray *)image
-                       success:(void (^)(id))success
+            operationForObject:(NSArray *)params
+                  continuation:(void (^)(id, void (^)()))continuation
                        failure:(void (^)())failure
 {
-    NSURL *URL = image[0];
-    DRBRecipe *recipe = image[1];
+    NSURL *URL = params[0];
+    NSString *filePath = params[1];
     NSURLRequest *request = [NSURLRequest requestWithURL:URL];
     return [AFImageRequestOperation imageRequestOperationWithRequest:request
                                                 imageProcessingBlock:nil
                                                              success:^(NSURLRequest *request, NSHTTPURLResponse *response, UIImage *image) {
-                                                                 recipe.image = image;
-                                                                 success(image);
+                                                                 [UIImagePNGRepresentation(image) writeToFile:filePath atomically:YES];
+                                                                 continuation(image, ^{
+                                                                     NSLog(@"Recipe Image Done %@", image);
+                                                                 });
                                                              } failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error) {
                                                                  failure();
                                                              }];

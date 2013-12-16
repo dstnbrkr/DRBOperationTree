@@ -7,8 +7,8 @@
 //
 
 #import "DRBMasterViewController.h"
-
 #import "DRBDetailViewController.h"
+#import "DRBRecipe.h"
 
 @interface DRBMasterViewController ()
 - (void)configureCell:(UITableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath;
@@ -215,9 +215,10 @@
 
 - (void)configureCell:(UITableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath
 {
-    NSManagedObject *object = [self.fetchedResultsController objectAtIndexPath:indexPath];
-    cell.textLabel.text = [[object valueForKey:@"name"] description];
-    cell.imageView.image = [object valueForKey:@"image"];
+    DRBRecipe *recipe = [self.fetchedResultsController objectAtIndexPath:indexPath];
+    cell.textLabel.text = recipe.name;
+    NSLog(@"cell %@, image=%@", recipe.name, recipe.image);
+    cell.imageView.image = recipe.image;
 }
 
 @end

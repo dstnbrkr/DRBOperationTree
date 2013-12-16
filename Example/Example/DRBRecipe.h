@@ -15,11 +15,17 @@
 
 + (DRBRecipe *)recipeWithJSON:(id)JSON context:(NSManagedObjectContext *)context;
 
+// core data
 @property (nonatomic, strong) NSString *name;
 @property (nonatomic, strong) NSManagedObject *ingredients;
 @property (nonatomic, strong) DRBCookbook *cookbook;
-@property (nonatomic, strong) NSArray *ingredientIDs;
 @property (nonatomic, strong) NSString *imagePath;
-@property (nonatomic, strong) UIImage *image;
+
+// derived
+@property (nonatomic, readonly) NSString *imageFilePath;
+@property (nonatomic, readonly) UIImage *image;
+
+// transient
+@property (nonatomic, strong) NSArray *ingredientIDs;
 
 @end

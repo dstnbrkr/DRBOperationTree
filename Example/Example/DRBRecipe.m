@@ -13,12 +13,11 @@
 @implementation DRBRecipe
 
 @synthesize ingredientIDs;
-@synthesize imagePath;
-@synthesize image;
 
 @dynamic name;
 @dynamic ingredients;
 @dynamic cookbook;
+@dynamic imagePath;
 
 + (DRBRecipe *)recipeWithJSON:(id)JSON context:(NSManagedObjectContext *)context
 {
@@ -28,6 +27,17 @@
     recipe.ingredientIDs = [JSON objectForKey:@"ingredient_ids"];
     recipe.imagePath = [JSON objectForKey:@"image_path"];
     return recipe;
+}
+
+- (NSString *)imageFilePath
+{
+    NSString *fileName = [[self.imagePath componentsSeparatedByString:@"/"] lastObject];
+    return fileName ? [NSString stringWithFormat:@"%@/%@", NSTemporaryDirectory(), fileName] : nil;
+}
+
+- (UIImage *)image
+{
+    return [UIImage imageWithContentsOfFile:[self imageFilePath]];
 }
 
 @end

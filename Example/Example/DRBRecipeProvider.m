@@ -31,15 +31,27 @@
     completion(cookbook.recipeIDs);
 }
 
-- (NSOperation *)operationTree:(DRBOperationTree *)node operationForObject:(NSString *)recipeID success:(void (^)(id))success failure:(void (^)())failure
+- (NSOperation *)operationTree:(DRBOperationTree *)node
+            operationForObject:(NSString *)recipeID
+                  continuation:(void (^)(id, void (^)()))continuation
+                       failure:(void (^)())failure
 {
     NSString *path = [NSString stringWithFormat:@"http://api.example.com/recipes/%@", recipeID];
     NSURL *URL = [NSURL URLWithString:path];
     NSURLRequest *request = [[NSURLRequest alloc] initWithURL:URL];
     AFJSONRequestOperation *operation = [[AFJSONRequestOperation alloc] initWithRequest:request];
     [operation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
-        DRBRecipe *recipe = [DRBRecipe recipeWithJSON:responseObject context:_managedObjectContext];
-        success(recipe);
+        
+        NSManagedObjectContext *context = [[NSManagedObjectContext alloc] initWithConcurrencyType:NSPrivateQueueConcurrencyType];
+        context.parentContext = _managedObjectContext;
+        DRBRecipe *recipe = [DRBRecipe recipeWithJSON:responseObject context:context];
+                             
+        continuation(recipe, ^{
+            NSLog(@"Recipe Done %@, image=%@", recipe.name, recipe.image);
+            [context performBlock:^{
+                [context save:nil];
+            }];
+        });
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         failure();
     }];

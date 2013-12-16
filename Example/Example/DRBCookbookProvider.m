@@ -32,7 +32,7 @@
 
 - (NSOperation *)operationTree:(DRBOperationTree *)node
             operationForObject:(NSString *)cookbookID
-                       success:(void (^)(id))success
+                  continuation:(void (^)(id, void (^)()))continuation
                        failure:(void (^)())failure
 {
     NSString *path = [NSString stringWithFormat:@"http://api.example.com/cookbooks/%@", cookbookID];
@@ -41,7 +41,9 @@
     AFJSONRequestOperation *operation = [[AFJSONRequestOperation alloc] initWithRequest:request];
     [operation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
         DRBCookbook *cookbook = [DRBCookbook cookbookWithJSON:responseObject context:_managedObjectContext];
-        success(cookbook);
+        continuation(cookbook, ^{
+            NSLog(@"Cookbook done");
+        });
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         failure();
     }];
