@@ -48,6 +48,7 @@
     AFHTTPRequestOperation *operation = [[AFJSONRequestOperation alloc] initWithRequest:request];
     [operation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
         DRBIngredient *ingredient = [DRBIngredient ingredientWithJSON:responseObject context:_managedObjectContext];
+        NSLog(@"adding %@", ingredient.name);
         [recipe addIngredientsObject:ingredient];
         continuation(ingredient, nil);
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {

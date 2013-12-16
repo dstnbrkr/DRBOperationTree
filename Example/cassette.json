@@ -44,7 +44,96 @@
     },
     "body" : "{ \"name\" : \"Onion\", \"image_path\" : \"http://farm3.staticflickr.com/2263/1842820851_98e9a56047_s.jpg\" }"
   },
- 
+  {
+    "method" : "GET",
+    "uri" : "http://api.example.com/ingredients/garlic",
+    "status" : 200,
+    "headers" : {
+      "Content-Type" : "application/json"
+    },
+    "body" : "{ \"name\" : \"Garlic\", \"image_path\" : \"http://farm3.staticflickr.com/2033/2212742541_967dd6e992_s.jpg\" }"
+  },
+  {
+    "method" : "GET",
+    "uri" : "http://api.example.com/ingredients/carrot",
+    "status" : 200,
+    "headers" : {
+      "Content-Type" : "application/json"
+    },
+    "body" : "{ \"name\" : \"Carrot\", \"image_path\" : \"http://farm3.staticflickr.com/2233/2256197976_87fc8a00cf_s.jpg\" }"
+   },
+   {
+     "method" : "GET",
+     "uri" : "http://api.example.com/ingredients/bayleaf",
+     "status" : 200,
+     "headers" : {
+       "Content-Type" : "application/json"
+     },
+     "body" : "{ \"name\" : \"Bay Leaf\", \"image_path\" : \"http://farm5.staticflickr.com/4020/4605791600_a18407bebd_s.jpg\" }"
+   },
+   {
+     "method" : "GET",
+     "uri" : "http://api.example.com/ingredients/ginger",
+     "status" : 200,
+     "headers" : {
+       "Content-Type" : "application/json"
+     },
+     "body" : "{ \"name\" : \"Ginger\", \"image_path\" : \"http://farm6.staticflickr.com/5159/7178625061_796d8d7f0f_s.jpg\" }"
+   },
+   {
+     "method" : "GET",
+     "uri" : "http://api.example.com/ingredients/cumin",
+     "status" : 200,
+     "headers" : {
+       "Content-Type" : "application/json"
+     },
+     "body" : "{ \"name\" : \"Cumin\", \"image_path\" : \"http://farm9.staticflickr.com/8478/8171256437_84e4318a80_s.jpg\" }"
+   },
+   {
+     "method" : "GET",
+     "uri" : "http://api.example.com/ingredients/cauliflower",
+     "status" : 200,
+     "headers" : {
+       "Content-Type" : "application/json"
+     },
+     "body" : "{ \"name\" : \"Cauliflower\", \"image_path\" : \"http://farm8.staticflickr.com/7304/8849306604_529708d1f3_s.jpg\" }"
+   },
+   {
+     "method" : "GET",
+     "uri" : "http://api.example.com/ingredients/chicken",
+     "status" : 200,
+     "headers" : {
+       "Content-Type" : "application/json"
+     },
+     "body" : "{ \"name\" : \"Chicken\", \"image_path\" : \"http://farm1.staticflickr.com/92/245380370_4eba03a1d4_s.jpg\" }"
+   },
+   {
+     "method" : "GET",
+     "uri" : "http://api.example.com/ingredients/buttermilk",
+     "status" : 200,
+     "headers" : {
+       "Content-Type" : "application/json"
+     },
+     "body" : "{ \"name\" : \"Buttermilk\", \"image_path\" : \"http://farm4.staticflickr.com/3523/4075663345_6091b24f44_s.jpg\" }"
+   },
+   {
+     "method" : "GET",
+     "uri" : "http://api.example.com/ingredients/flour",
+     "status" : 200,
+     "headers" : {
+       "Content-Type" : "application/json"
+     },
+     "body" : "{ \"name\" : \"Flour\", \"image_path\" : \"http://farm9.staticflickr.com/8339/8187291243_3b7b4da837_s.jpg\" }"
+   },
+   {
+     "method" : "GET",
+     "uri" : "http://api.example.com/ingredients/pepper",
+     "status" : 200,
+     "headers" : {
+       "Content-Type" : "application/json"
+     },
+     "body" : "{ \"name\" : \"Pepper\", \"image_path\" : \"http://farm9.staticflickr.com/8071/8328383653_309221c59b_s.jpg\" }"
+   }
 ]
 
 
