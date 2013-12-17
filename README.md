@@ -115,8 +115,8 @@ Each node in the tree sends it's output to it's children. In this example, the r
 // (ex. ingredient id -> operation to fetch ingredient -> serialized ingredient object)
 - (NSOperation *)operationTree:(DRBOperationTree *)node
             operationForObject:(id)object
-                       success:(void(^)(id object))success
-                       failure:(void(^)())failure {
+                  continuation:(void(^)(id, void(^)()))continuation
+                       failure:(void(^)())failure;
 
     return [NSBlockOperation blockOperationWithBlock:^{
         [self fetchIngredient:object completion:success];
