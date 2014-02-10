@@ -103,7 +103,7 @@ Each node in the tree sends it's output to it's children. In this example, the r
 
 // maps input objects to output objects (ex. recipe -> ingredient ids) 
 - (void)operationTree:(DRBOperationTree *)node
-     objectsForObject:(id)object
+     objectsForObject:(CBRecipe *)recipe
            completion:(void(^)(NSArray *objects))completion {
 
     // this method is optionally asynchronous
@@ -114,12 +114,14 @@ Each node in the tree sends it's output to it's children. In this example, the r
 // given an object, returns an operation for that object and passes along the result
 // (ex. ingredient id -> operation to fetch ingredient -> serialized ingredient object)
 - (NSOperation *)operationTree:(DRBOperationTree *)node
-            operationForObject:(id)object
+            operationForObject:(id)ingredientID
                   continuation:(void(^)(id, void(^)()))continuation
                        failure:(void(^)())failure;
 
     return [NSBlockOperation blockOperationWithBlock:^{
-        [self fetchIngredient:object completion:success];
+        [self fetchIngredient:ingredientID success:^(CBIngredient *ingredient) {
+            continuation(ingredient, nil);
+        }];
     }];
 }
 ```
