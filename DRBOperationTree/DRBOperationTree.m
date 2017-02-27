@@ -67,6 +67,11 @@ static const NSUInteger kARSyncNodeMaxRetries = 3;
 
 - (void)sendObject:(id)object completion:(void(^)())completion
 {
+    if(_children.count == 0 && completion){
+        dispatch_sync(dispatch_get_main_queue(), completion);
+        return;
+    }
+
     dispatch_group_t group = dispatch_group_create();
     for (DRBOperationTree *child in _children) {
         dispatch_group_enter(group);
